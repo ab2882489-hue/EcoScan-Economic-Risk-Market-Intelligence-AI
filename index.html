@@ -1,457 +1,231 @@
-<!-- Hero Section -->
-<section class="hero-section text-center">
-    <div class="container">
-        <h1 class="hero-headline">Turn global news chaos into economic foresight</h1>
-        <p class="hero-description">
-            AI-powered analysis of market signals, geopolitical events, and financial indicators to quantify economic risk and provide actionable intelligence.
-        </p>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoScan – Economic Risk & Market Intelligence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: #0f172a;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #065f46 !important;
+    }
+
+    .hero {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-weight: 700;
+      color: #065f46;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #334155;
+    }
+
+    .card {
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-primary {
+      background-color: #10b981;
+      border-color: #10b981;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background-color: #059669;
+    }
+
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #065f46;
+    }
+
+    .report-section h6 {
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <span class="navbar-brand">EcoScan</span>
+    <span class="text-muted">Economic Risk & Market Intelligence AI</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Turn global news chaos into economic foresight</h1>
+    <p class="mt-3">
+      EcoScan analyzes economic signals from global markets and converts them
+      into clear, actionable insights for decision-makers.
+    </p>
+  </div>
 </section>
 
-<main class="container my-5">
-    <div class="row">
-        <!-- Input Section -->
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    Generate Risk Analysis
-                </div>
-                <div class="card-body">
-                    <div class="mb-4">
-                        <label for="industrySelect" class="form-label fw-semibold">Select Industry</label>
-                        <select class="form-select" id="industrySelect">
-                            <option value="" disabled selected>Choose an industry...</option>
-                            <option value="agriculture">Agriculture</option>
-                            <option value="technology">Technology</option>
-                            <option value="energy">Energy</option>
-                            <option value="retail">Retail</option>
-                            <option value="logistics">Logistics</option>
-                        </select>
-                        <div class="form-text mt-1">Industry-specific risk factors will be analyzed.</div>
-                    </div>
+<!-- MAIN -->
+<div class="container">
 
-                    <button id="generateBtn" class="btn btn-emerald w-100 py-3 mb-3">
-                        Generate Risk Report
-                    </button>
-
-                    <button id="demoBtn" class="btn btn-outline-emerald w-100 py-3">
-                        Try Demo: Agriculture Industry
-                    </button>
-
-                    <div class="mt-4 pt-3 border-top">
-                        <small class="text-muted">
-                            <strong>Note:</strong> This is a frontend demonstration. In a production environment, the AI engine would process real-time data from 50+ sources.
-                        </small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visualization Section -->
-            <div class="card">
-                <div class="card-header">
-                    Market Sentiment Spectrum
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="sentimentChart"></canvas>
-                    </div>
-                    <p class="text-muted small mb-0">
-                        Visual representation of risk vs stability indicators derived from news sentiment, market volatility, and economic indicators.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Output Section -->
-        <div class="col-lg-8">
-            <div id="reportOutput" class="d-none">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="mb-0">AI Risk Analysis Report</h3>
-                    <div class="text-end">
-                        <div class="score-label">Economic Sentiment Score</div>
-                        <div class="sentiment-score" id="sentimentScore">0</div>
-                    </div>
-                </div>
-
-                <!-- Executive Summary -->
-                <div class="card mb-4 fade-in">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        Executive Summary
-                        <span class="risk-badge risk-low" id="summaryBadge">Low Risk</span>
-                    </div>
-                    <div class="card-body">
-                        <p id="executiveSummary" class="mb-0">
-                            Loading analysis...
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- Key Risk Events -->
-                        <div class="card h-100 mb-4 fade-in">
-                            <div class="card-header">
-                                Key Risk Events
-                            </div>
-                            <ul class="list-group list-group-flush" id="riskEvents">
-                                <li class="list-group-item">Analysis in progress...</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Short-Term Outlook -->
-                        <div class="card h-100 mb-4 fade-in">
-                            <div class="card-header">
-                                Short-Term Outlook (30-60 Days)
-                            </div>
-                            <div class="card-body">
-                                <p id="shortTermOutlook" class="mb-0">
-                                    Pending analysis completion...
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Immediate Action Plan -->
-                <div class="card fade-in">
-                    <div class="card-header">
-                        Immediate Action Plan
-                    </div>
-                    <div class="card-body">
-                        <ol class="mb-0" id="actionPlan">
-                            <li>Awaiting risk assessment...</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="text-center py-5">
-                <div class="py-5">
-                    <div class="mb-4">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d1fae5" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"/>
-                        </svg>
-                    </div>
-                    <h4 class="mb-3">No Analysis Generated</h4>
-                    <p class="text-muted mb-4">
-                        Select an industry and generate a report to view AI-powered risk analysis and economic intelligence.
-                    </p>
-                    <button id="emptyDemoBtn" class="btn btn-outline-emerald">
-                        Try Demo with Sample Data
-                    </button>
-                </div>
-            </div>
-        </div>
+  <!-- INPUT -->
+  <div class="card p-4 mb-4">
+    <h5 class="section-title">Industry Selection</h5>
+    <div class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label">Select Industry</label>
+        <select id="industry" class="form-select">
+          <option>Agriculture</option>
+          <option>Technology</option>
+          <option>Energy</option>
+          <option>Retail</option>
+          <option>Logistics</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary w-100" onclick="generateReport()">
+          Generate Risk Report
+        </button>
+      </div>
     </div>
-</main>
+  </div>
 
-<footer class="py-4">
-    <div class="container text-center">
-        <p class="mb-0">EcoScan Economic Intelligence Platform | Demonstration Interface v1.0 | Not for production use</p>
+  <!-- OUTPUT -->
+  <div id="output" class="row g-4" style="display:none;">
+
+    <!-- REPORT -->
+    <div class="col-lg-7">
+      <div class="card p-4 report-section">
+        <h5 class="section-title">Economic Risk Report</h5>
+
+        <h6>Executive Summary</h6>
+        <p id="summary"></p>
+
+        <h6>Key Risk Events</h6>
+        <ul id="risks"></ul>
+
+        <h6>Economic Sentiment Score</h6>
+        <p><strong id="score"></strong> / 100</p>
+
+        <h6>Short-Term Outlook</h6>
+        <p id="outlook"></p>
+
+        <h6>Immediate Action Plan</h6>
+        <p id="action"></p>
+      </div>
     </div>
+
+    <!-- CHART -->
+    <div class="col-lg-5">
+      <div class="card p-4">
+        <h5 class="section-title">Market Sentiment Overview</h5>
+        <canvas id="sentimentChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DEMO BUTTON -->
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-secondary" onclick="demoFill()">
+      Try Demo: Agriculture Industry
+    </button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Built for Hackonomics 26 · EcoScan AI
 </footer>
 
 <script>
-    // DOM Elements
-    const industrySelect = document.getElementById('industrySelect');
-    const generateBtn = document.getElementById('generateBtn');
-    const demoBtn = document.getElementById('demoBtn');
-    const emptyDemoBtn = document.getElementById('emptyDemoBtn');
-    const reportOutput = document.getElementById('reportOutput');
-    const emptyState = document.getElementById('emptyState');
-    const sentimentScore = document.getElementById('sentimentScore');
-    const executiveSummary = document.getElementById('executiveSummary');
-    const summaryBadge = document.getElementById('summaryBadge');
-    const riskEvents = document.getElementById('riskEvents');
-    const shortTermOutlook = document.getElementById('shortTermOutlook');
-    const actionPlan = document.getElementById('actionPlan');
+  let chart;
 
-    // Chart.js Instance
-    let sentimentChart;
+  function generateReport() {
+    document.getElementById("output").style.display = "flex";
 
-    // Initialize Chart
-    function initChart() {
-        const ctx = document.getElementById('sentimentChart').getContext('2d');
-        sentimentChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Market Volatility', 'Geopolitical Risk', 'Supply Chain', 'Regulatory', 'Currency Fluctuation', 'Consumer Sentiment'],
-                datasets: [{
-                    label: 'Risk Level',
-                    data: [65, 75, 60, 40, 55, 45],
-                    backgroundColor: [
-                        'rgba(5, 150, 105, 0.7)',
-                        'rgba(5, 150, 105, 0.7)',
-                        'rgba(5, 150, 105, 0.7)',
-                        'rgba(5, 150, 105, 0.5)',
-                        'rgba(5, 150, 105, 0.7)',
-                        'rgba(5, 150, 105, 0.5)'
-                    ],
-                    borderColor: [
-                        '#047857',
-                        '#047857',
-                        '#047857',
-                        '#047857',
-                        '#047857',
-                        '#047857'
-                    ],
-                    borderWidth: 1,
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: {
-                            color: 'rgba(0,0,0,0.05)'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `Risk Level: ${context.raw}%`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
+    document.getElementById("summary").innerText =
+      "Recent global market signals indicate rising volatility driven by supply chain constraints and policy uncertainty.";
 
-    // Mock Data Repository
-    const mockData = {
-        agriculture: {
-            score: 72,
-            badgeClass: 'risk-medium',
-            badgeText: 'Moderate Risk',
-            summary: 'The agriculture sector faces moderate risk primarily due to climate variability and shifting trade policies. However, strong commodity prices and technological adoption provide stabilizing factors. Overall exposure is manageable with proactive monitoring.',
-            events: [
-                'Drought conditions emerging in key North American growing regions',
-                'New export restrictions on fertilizers from Eastern Europe',
-                'Labor shortages affecting harvest cycles in Western Europe',
-                'Positive development: Precision agriculture adoption up 18% YTD'
-            ],
-            outlook: 'Expect price volatility in grain and oilseed markets over the next quarter. Livestock margins may tighten due to feed costs. Geopolitical tensions could disrupt fertilizer supply chains, requiring alternative sourcing strategies.',
-            actions: [
-                'Diversify supplier base for critical inputs, especially fertilizers',
-                'Increase hedging activity for Q3 and Q4 commodity exposure',
-                'Evaluate irrigation investments in drought-prone regions',
-                'Monitor trade policy announcements weekly for market shifts'
-            ]
-        },
-        technology: {
-            score: 65,
-            badgeClass: 'risk-low',
-            badgeText: 'Low-Moderate Risk',
-            summary: 'The technology sector exhibits low-moderate systemic risk with isolated high-volatility segments. Regulatory scrutiny is increasing but offset by strong demand fundamentals and innovation pipelines.',
-            events: [
-                'Increased antitrust scrutiny in major markets',
-                'Semiconductor supply chain normalization ahead of schedule',
-                'Cybersecurity incidents reported among mid-tier SaaS providers',
-                'Strong enterprise software demand despite macroeconomic headwinds'
-            ],
-            outlook: 'Growth expected to remain robust but selective. Hardware may face margin pressure, while software and cloud services maintain momentum. Regulatory developments warrant close monitoring.',
-            actions: [
-                'Conduct regulatory compliance audit for all major operating regions',
-                'Accelerate cybersecurity investment by minimum 15%',
-                'Diversify semiconductor sourcing beyond primary geographic concentration',
-                'Review customer concentration risk for enterprise clients'
-            ]
-        },
-        energy: {
-            score: 81,
-            badgeClass: 'risk-high',
-            badgeText: 'Elevated Risk',
-            summary: 'The energy sector faces elevated risk due to geopolitical instability, policy uncertainty, and transitional market dynamics. Volatility is expected to remain above historical averages.',
-            events: [
-                'OPEC+ production adjustments creating market uncertainty',
-                'Policy delays in key renewable energy incentives',
-                'Infrastructure constraints in key transportation corridors',
-                'Geopolitical tensions affecting key transit regions'
-            ],
-            outlook: 'High volatility expected in crude and natural gas markets. Renewable energy growth continues but faces interconnection delays. Strategic inventory management becomes critical.',
-            actions: [
-                'Increase strategic reserves for critical fuel types',
-                'Accelerate supplier diversification initiatives',
-                'Model multiple policy scenarios for capital allocation',
-                'Enhance political risk insurance coverage'
-            ]
-        },
-        retail: {
-            score: 68,
-            badgeClass: 'risk-medium',
-            badgeText: 'Moderate Risk',
-            summary: 'Consumer discretionary spending shows signs of softening, creating moderate risk for the retail sector. Inventory management and supply chain flexibility are key differentiators.',
-            events: [
-                'Consumer confidence indices declining for third consecutive month',
-                'Ocean freight rates stabilizing but remain elevated',
-                'Shift toward value-oriented purchasing patterns',
-                'Labor costs continuing upward trajectory across markets'
-            ],
-            outlook: 'Expect promotional activity to increase in coming quarters. Luxury segment remains resilient while mid-tier faces pressure. Inventory-to-sales ratios require careful management.',
-            actions: [
-                'Implement dynamic pricing models to optimize margin and volume',
-                'Reduce order lead times by diversifying logistics providers',
-                'Increase proportion of locally sourced inventory where feasible',
-                'Enhance loyalty programs to retain core customer base'
-            ]
-        },
-        logistics: {
-            score: 74,
-            badgeClass: 'risk-medium',
-            badgeText: 'Moderate Risk',
-            summary: 'Logistics networks are normalizing but face persistent labor constraints and infrastructure bottlenecks. Regional disparities create both challenges and opportunities.',
-            events: [
-                'Port congestion easing but rail capacity remains constrained',
-                'Driver shortages persisting in North America and Europe',
-                'Fuel price volatility impacting margin predictability',
-                'Warehouse automation adoption accelerating'
-            ],
-            outlook: 'Cost pressures likely to continue through year-end. Capacity will remain tight in certain corridors. Technology adoption will be critical for efficiency gains.',
-            actions: [
-                'Lock in fuel hedges for next two quarters',
-                'Invest in workforce retention programs for critical roles',
-                'Develop contingency routing plans for three key corridors',
-                'Pilot automation technologies in highest-cost facilities'
-            ]
+    document.getElementById("risks").innerHTML =
+      "<li>Supply chain disruptions</li><li>Commodity price volatility</li><li>Regulatory uncertainty</li>";
+
+    document.getElementById("score").innerText = "68";
+
+    document.getElementById("outlook").innerText =
+      "Short-term market conditions suggest moderate risk with potential price fluctuations over the next 7 days.";
+
+    document.getElementById("action").innerText =
+      "Businesses should monitor inventory levels, hedge against price increases, and diversify suppliers.";
+
+    renderChart(68);
+  }
+
+  function demoFill() {
+    generateReport();
+  }
+
+  function renderChart(score) {
+    const ctx = document.getElementById("sentimentChart");
+
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Risk", "Stability"],
+        datasets: [{
+          data: [100 - score, score],
+          backgroundColor: ["#ef4444", "#10b981"]
+        }]
+      },
+      options: {
+        cutout: "60%",
+        plugins: {
+          legend: {
+            position: "bottom"
+          }
         }
-    };
-
-    // Update Chart Data
-    function updateChart(industry) {
-        const dataMap = {
-            agriculture: [70, 80, 65, 45, 60, 50],
-            technology: [55, 60, 75, 70, 40, 65],
-            energy: [85, 90, 70, 65, 75, 40],
-            retail: [60, 50, 80, 55, 65, 70],
-            logistics: [75, 65, 85, 50, 70, 45]
-        };
-        
-        if (sentimentChart && dataMap[industry]) {
-            sentimentChart.data.datasets[0].data = dataMap[industry];
-            sentimentChart.update();
-        }
-    }
-
-    // Display Report Function
-    function displayReport(industry) {
-        const data = mockData[industry];
-        if (!data) return;
-
-        // Show report, hide empty state
-        reportOutput.classList.remove('d-none');
-        emptyState.classList.add('d-none');
-
-        // Add fade-in animation to all report cards
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.animation = 'none';
-            setTimeout(() => {
-                el.style.animation = 'fadeIn 0.5s ease-in-out';
-            }, 10);
-        });
-
-        // Update report content
-        sentimentScore.textContent = data.score;
-        sentimentScore.style.color = data.score >= 80 ? '#dc2626' : data.score >= 70 ? '#d97706' : '#059669';
-        
-        executiveSummary.textContent = data.summary;
-        
-        summaryBadge.className = `risk-badge ${data.badgeClass}`;
-        summaryBadge.textContent = data.badgeText;
-        
-        // Clear and populate risk events
-        riskEvents.innerHTML = '';
-        data.events.forEach(event => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item d-flex';
-            li.innerHTML = `<span class="me-2">•</span> <span>${event}</span>`;
-            riskEvents.appendChild(li);
-        });
-        
-        shortTermOutlook.textContent = data.outlook;
-        
-        // Clear and populate action plan
-        actionPlan.innerHTML = '';
-        data.actions.forEach(action => {
-            const li = document.createElement('li');
-            li.className = 'mb-2';
-            li.textContent = action;
-            actionPlan.appendChild(li);
-        });
-
-        // Update chart
-        updateChart(industry);
-    }
-
-    // Loading State Simulation
-    function simulateLoading() {
-        const originalText = generateBtn.innerHTML;
-        generateBtn.innerHTML = '<span class="loading"></span> Analyzing market signals...';
-        generateBtn.disabled = true;
-        
-        setTimeout(() => {
-            const industry = industrySelect.value;
-            if (industry) {
-                displayReport(industry);
-            } else {
-                alert('Please select an industry first.');
-            }
-            generateBtn.innerHTML = originalText;
-            generateBtn.disabled = false;
-        }, 1500);
-    }
-
-    // Event Listeners
-    generateBtn.addEventListener('click', () => {
-        if (!industrySelect.value) {
-            alert('Please select an industry before generating a report.');
-            return;
-        }
-        simulateLoading();
+      }
     });
-
-    demoBtn.addEventListener('click', () => {
-        industrySelect.value = 'agriculture';
-        displayReport('agriculture');
-    });
-
-    emptyDemoBtn.addEventListener('click', () => {
-        industrySelect.value = 'agriculture';
-        displayReport('agriculture');
-    });
-
-    // Initialize Chart on Load
-    document.addEventListener('DOMContentLoaded', () => {
-        initChart();
-        
-        // Set default state
-        reportOutput.classList.add('d-none');
-        emptyState.classList.remove('d-none');
-    });
+  }
 </script>
+
+</body>
+</html>
